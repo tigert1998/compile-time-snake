@@ -70,3 +70,40 @@ class ChangeAtIndex<0, New, List> {
 public:
     using Result = Cons<New, typename List::Right>;
 };
+
+template <typename New, typename List>
+class Append {
+private:
+    using Temp = typename Append<New, typename List::Right>::Result;
+public:
+    using Result = Cons<typename List::Left, Temp>;
+};
+
+template <typename New>
+class Append<New, NullList> {
+public:
+    using Result = Cons<New, NullList>;
+};
+
+template <typename List>
+class Reverse {
+private:
+    using Temp = typename Reverse<typename List::Right>::Result;
+public:
+    using Result = typename Append<typename List::Left, Temp>::Result;
+};
+
+template <>
+class Reverse<NullList> {
+public:
+    using Result = NullList;
+};
+
+template <typename List>
+class Init {
+private:
+    using Temp = typename Reverse<List>::Result::Right;
+public:
+    using Result = typename Reverse<Temp>::Result;
+};
+

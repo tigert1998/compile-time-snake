@@ -8,6 +8,10 @@ enum class Direction {
     kRightward, kUpward, kLeftward, kDownward
 };
 
+enum class TileType {
+    kRoad, kFood, kWall
+};
+
 template <int x, int y>
 class MakeCoord {
 public:
