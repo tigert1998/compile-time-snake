@@ -56,3 +56,17 @@ class Length<NullList> {
 public:
     using Result = Int<0>;
 };
+
+template <int n, typename New, typename List>
+class ChangeAtIndex {
+private:
+    using Temp = typename ChangeAtIndex<n - 1, New, typename List::Right>::Result;
+public:
+    using Result = Cons<typename List::Left, Temp>;
+};
+
+template <typename New, typename List>
+class ChangeAtIndex<0, New, List> {
+public:
+    using Result = Cons<New, typename List::Right>;
+};

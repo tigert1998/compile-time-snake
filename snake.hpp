@@ -17,11 +17,14 @@ public:
     static constexpr bool result = false;
 };
 
-template <Direction d, typename Snake>
-class IsSelfHit {
+template <Direction d, typename Snake, typename Map>
+class IsDead {
 private:
-    using NewHeadCoord = typename MoveCoord<d, typename Snake::Left>::Result;
+    using HeadCoord = typename Snake::Left;
+    using NewHeadCoord = typename MoveCoord<d, HeadCoord>::Result;
+    static constexpr bool hit_self = CoordExists<NewHeadCoord, Snake>::result;
+    static constexpr bool out_of_wall = !CoordInMap<NewHeadCoord, Map>::result;
 public:
-    static constexpr bool result = CoordExists<NewHeadCoord, Snake>::result;
+    static constexpr bool result = hit_self || out_of_wall;
 };
 

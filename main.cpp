@@ -8,7 +8,10 @@ using std::cout;
 using std::endl;
 
 int main() {
+    using Map = MakeList<MakeList<Int<0>, Int<0>, Int<0>>::Result, MakeList<Int<0>, Int<0>, Int<0>>::Result>::Result;
     using Snake = MakeList<MakeCoord<1, 1>::Result, MakeCoord<0, 1>::Result, MakeCoord<0, 2>::Result, MakeCoord<1, 2>::Result>::Result;
-    cout << IsSelfHit<Direction::kUpward, Snake>::result << endl;
+    cout << IsDead<Direction::kDownward, Snake, Map>::result << endl;
+    using NewMap = ChangeAtXY<1, 1, Int<10086>, Map>::Result;
+    cout << typeid(NewMap).name() << endl;
     return 0;
 }

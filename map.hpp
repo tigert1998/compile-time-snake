@@ -19,3 +19,11 @@ public:
     using Result = typename ValueAtXY<x, y, Map>::Result;
 };
 
+template <int x, int y, typename New, typename Map>
+class ChangeAtXY {
+private:
+    using Row = typename ValueAtIndex<x, Map>::Result;
+    using NewRow = typename ChangeAtIndex<y, New, Row>::Result;
+public:
+    using Result = typename ChangeAtIndex<x, NewRow, Map>::Result;
+};

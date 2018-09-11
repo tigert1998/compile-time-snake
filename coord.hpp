@@ -35,3 +35,18 @@ class CoordEqual {
 public:
     static constexpr bool result = A::First::value == B::First::value && A::Second::value == B::Second::value;
 };
+
+template <typename Coord, typename Map>
+class CoordInMap {
+private:
+    static constexpr int height = Length<Map>::Result::value;
+    static constexpr int width = Length<typename Map::Left>::Result::value;
+    static constexpr int x = Coord::First::value;
+    static constexpr int y = Coord::Second::value;
+public:
+    static constexpr bool result =
+        x >= 0 &&
+        y >= 0 &&
+        x < height &&
+        y < width;
+};
