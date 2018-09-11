@@ -1,6 +1,7 @@
 #pragma once
 
 #include "if.hpp"
+#include "int.hpp"
 
 class NullList {};
 
@@ -44,3 +45,14 @@ public:
     using Result = typename List::Left;
 };
 
+template <typename List>
+class Length {
+public:
+    using Result = Int<Length<typename List::Right>::Result::value + 1>;
+};
+
+template <>
+class Length<NullList> {
+public:
+    using Result = Int<0>;
+};

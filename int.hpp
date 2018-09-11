@@ -3,5 +3,5 @@
 template <int N>
 class Int {
 public:
-    static constexpr int Value = N;
+    static constexpr int value = N;
 };
