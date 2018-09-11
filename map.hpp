@@ -2,12 +2,12 @@
 
 #include "list.hpp"
 
-template <int X, int Y, typename Map>
+template <int x, int y, typename Map>
 class ValueAtXY {
 private:
-    using Row = typename ValueAtIndex<X, Map>::Result;
+    using Row = typename ValueAtIndex<x, Map>::Result;
 public:
-    using Result = typename ValueAtIndex<Y, Row>::Result;
+    using Result = typename ValueAtIndex<y, Row>::Result;
 };
 
 template <typename Coord, typename Map>

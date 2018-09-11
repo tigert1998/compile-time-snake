@@ -1,7 +1,7 @@
 #pragma once
 
-template <int N>
+template <int n>
 class Int {
 public:
-    static constexpr int value = N;
+    static constexpr int value = n;
 };

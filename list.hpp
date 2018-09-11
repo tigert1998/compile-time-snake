@@ -33,10 +33,10 @@ public:
     using Result = NullList;
 };
 
-template <int N, typename List>
+template <int n, typename List>
 class ValueAtIndex {
 public:
-    using Result = typename ValueAtIndex<N - 1, typename List::Right>::Result;
+    using Result = typename ValueAtIndex<n - 1, typename List::Right>::Result;
 };
 
 template <typename List>

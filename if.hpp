@@ -1,6 +1,6 @@
 #pragma once
 
-template <bool Predicate, typename Then, typename Else>
+template <bool predicate, typename Then, typename Else>
 class If {};
 
 template <typename Then, typename Else>

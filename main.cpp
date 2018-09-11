@@ -2,18 +2,13 @@
 
 #include "map.hpp"
 #include "int.hpp"
-#include "coord.hpp"
+#include "snake.hpp"
 
 using std::cout;
 using std::endl;
 
 int main() {
-    using Coord = MakeCoord<1, 0>::Result;
-    using NewCoord = MoveCoord<Direction::kUpward, Coord>::Result;
-    using Map = MakeList<MakeList<Int<1>, Int<2>>::Result, MakeList<Int<3>, Int<4>>::Result>::Result;
-    using Value = ValueAtCoord<NewCoord, Map>::Result;
-    using Len = Length<Map>::Result;
-    cout << typeid(Value).name() << endl;
-    cout << typeid(Len).name() << endl;
+    using Snake = MakeList<MakeCoord<1, 1>::Result, MakeCoord<0, 1>::Result, MakeCoord<0, 2>::Result, MakeCoord<1, 2>::Result>::Result;
+    cout << IsSelfHit<Direction::kUpward, Snake>::result << endl;
     return 0;
 }
