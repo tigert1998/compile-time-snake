@@ -1,5 +1,7 @@
 import os
 import random
+import click
+from functools import reduce
 
 HEIGHT = 9
 
@@ -60,7 +62,7 @@ def print_game(snake_map, snake):
                 print("\033[0;34;47m@\033[0m", end="")
         print()
 
-def feed():
+def go():
     global is_dead
     global direction
     global snake_map
@@ -91,7 +93,20 @@ def feed():
 direction, snake_map, snake = init(HEIGHT, HEIGHT)
 while True:
     print_game(snake_map, snake)
-    feed()
+    key = click.getchar()
+    if direction != 2 and (key == 'd' or key == 'D'):
+        direction = 0
+    elif direction != 3 and (key == 'w' or key == 'W'):
+        direction = 1
+    elif direction != 0 and (key == 'a' or key == 'A'):
+        direction = 2
+    elif direction != 1 and (key == 's' or key == 'S'):
+        direction = 3
+    go()
     if is_dead:
         print("\033[0;31;40mGame Over\033[0m")
         break
+    food_total = sum(map(lambda row: reduce(lambda x, y: x + int(y == 1), row, 0), snake_map))
+    if food_total == 0:
+        x, y = generate_food(snake_map, snake)
+        snake_map[x][y] = 1
