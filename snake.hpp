@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 #include "map.hpp"
 #include "coord.hpp"
 
@@ -38,9 +40,32 @@ private:
     using PlusNewHead = Cons<NewHeadCoord, Snake>;
     using Value = typename ValueAtCoord<NewHeadCoord, Map>::Result;
     static constexpr bool eat = static_cast<TileType>(Value::value) == TileType::kFood;
-public:
-    using Result = typename If<eat,
+
+    using NewSnake = typename If<eat,
         PlusNewHead,
         typename Init<PlusNewHead>::Result
     >::Result;
+    using NewMap = typename ChangeAtCoord<NewHeadCoord, Int<static_cast<int>(TileType::kRoad)>, Map>::Result;
+
+public:
+    using Result = Pair<NewSnake, NewMap>;
+};
+
+template <typename Snake>
+class StringifySnake {
+    friend std::ostream &operator<<(std::ostream &os, const StringifySnake<Snake> &) {
+        using Head = typename Snake::Left;
+        int x = Head::First::value;
+        int y = Head::Second::value;
+        os << x << " " << y << std::endl;
+        os << StringifySnake<typename Snake::Right>();
+        return os;
+    }
+};
+
+template <>
+class StringifySnake<NullList> {
+    friend std::ostream &operator<<(std::ostream &os, const StringifySnake<NullList> &) {
+        return os;
+    }
 };
