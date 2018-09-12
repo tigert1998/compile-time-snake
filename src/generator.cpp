@@ -27,7 +27,7 @@ const string program_template =
 "    cout << is_dead << endl;\n"
 "    if (is_dead) return 0;\n"
 "    cout << static_cast<int>(direction) << endl;\n"
-"    using RunResult = Run<Direction::kLeftward, Snake, Map>::Result;\n"
+"    using RunResult = Run<direction, Snake, Map>::Result;\n"
 "    using NewSnake = RunResult::First;\n"
 "    using NewMap = RunResult::Second;\n"
 "    cout << Length<NewSnake>::Result::value << endl;\n"
