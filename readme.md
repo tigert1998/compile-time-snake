@@ -1,6 +1,6 @@
 # A snake running in compiling time
 
-It's a compiling time snake as is mentioned in the title. Nearly all game logics are implemented within `C++`'s compiling time while the `python` script are used only to render the map, generate food locations and transfer necessary data.
+It's a compiling time snake as is mentioned in the title. **Nearly all game logics are implemented within `C++`'s compiling time** while the `python` script are used only to render the map, generate food locations and transfer necessary data.
 
 ## Prerequisite
 
