@@ -49,16 +49,24 @@ def print_game(snake_map, snake):
             output[i][j] = snake_map[i][j]
     for x, y in snake:
         output[x][y] = 3
+    output[snake[0][0]][snake[0][1]] = 4
     for i in range(height):
         for j in range(width):
             v = output[i][j]
             if v == 0:
+                # empty slot
                 print("\033[0;36;47m.\033[0m", end="")
             elif v == 1:
+                # food potion
                 print("\033[0;31;47m*\033[0m", end="")
             elif v == 2:
+                # wall
                 print("\033[0;30;47m#\033[0m", end="")
             elif v == 3:
+                # snake body
+                print("\033[0;34;47mo\033[0m", end="")
+            else:
+                # snake head
                 print("\033[0;34;47m@\033[0m", end="")
         print()
 
@@ -90,23 +98,24 @@ def go():
         for j in range(width):
             snake_map[i][j] = next(new_state)
 
-direction, snake_map, snake = init(HEIGHT, HEIGHT)
-while True:
-    print_game(snake_map, snake)
-    key = click.getchar()
-    if direction != 2 and (key == 'd' or key == 'D'):
-        direction = 0
-    elif direction != 3 and (key == 'w' or key == 'W'):
-        direction = 1
-    elif direction != 0 and (key == 'a' or key == 'A'):
-        direction = 2
-    elif direction != 1 and (key == 's' or key == 'S'):
-        direction = 3
-    go()
-    if is_dead:
-        print("\033[0;31;40mGame Over\033[0m")
-        break
-    food_total = sum(map(lambda row: reduce(lambda x, y: x + int(y == 1), row, 0), snake_map))
-    if food_total == 0:
-        x, y = generate_food(snake_map, snake)
-        snake_map[x][y] = 1
+if __name__ == '__main__':
+    direction, snake_map, snake = init(HEIGHT, HEIGHT)
+    while True:
+        print_game(snake_map, snake)
+        key = click.getchar()
+        if direction != 2 and (key == 'd' or key == 'D'):
+            direction = 0
+        elif direction != 3 and (key == 'w' or key == 'W'):
+            direction = 1
+        elif direction != 0 and (key == 'a' or key == 'A'):
+            direction = 2
+        elif direction != 1 and (key == 's' or key == 'S'):
+            direction = 3
+        go()
+        if is_dead:
+            print("\033[0;31;40mGame Over\033[0m")
+            break
+        food_total = sum(map(lambda row: reduce(lambda x, y: x + int(y == 1), row, 0), snake_map))
+        if food_total == 0:
+            x, y = generate_food(snake_map, snake)
+            snake_map[x][y] = 1
