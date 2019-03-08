@@ -6,24 +6,25 @@ It's a compiling time snake as is mentioned in the title. **Nearly all game logi
 // input
 using Map = MakeList<
     MakeList<Int<2>, Int<2>, Int<2>, Int<2>, Int<2>, Int<2>>::Result, 
-	MakeList<Int<2>, Int<0>, Int<0>, Int<0>, Int<0>, Int<2>>::Result, 
-	MakeList<Int<2>, Int<1>, Int<0>, Int<0>, Int<0>, Int<2>>::Result, 
-	MakeList<Int<2>, Int<0>, Int<0>, Int<0>, Int<0>, Int<2>>::Result, 
-	MakeList<Int<2>, Int<0>, Int<0>, Int<0>, Int<0>, Int<2>>::Result, 
-	MakeList<Int<2>, Int<2>, Int<2>, Int<2>, Int<2>, Int<2>>::Result>::Result;
+    MakeList<Int<2>, Int<0>, Int<0>, Int<0>, Int<0>, Int<2>>::Result, 
+    MakeList<Int<2>, Int<1>, Int<0>, Int<0>, Int<0>, Int<2>>::Result, 
+    MakeList<Int<2>, Int<0>, Int<0>, Int<0>, Int<0>, Int<2>>::Result, 
+    MakeList<Int<2>, Int<0>, Int<0>, Int<0>, Int<0>, Int<2>>::Result, 
+    MakeList<Int<2>, Int<2>, Int<2>, Int<2>, Int<2>, Int<2>>::Result>::Result;
 using Snake = MakeList<
     MakeCoord<2, 2>::Result, 
-	MakeCoord<2, 3>::Result, 
-	MakeCoord<2, 4>::Result, 
-	MakeCoord<3, 4>::Result>::Result;
+    MakeCoord<2, 3>::Result, 
+    MakeCoord<2, 4>::Result, 
+    MakeCoord<3, 4>::Result>::Result;
     
 /*
-######
-#....#
-#*@oo#
-#...o#
-#....#
-######
+Map ==
+    ######
+    #....#
+    #*@oo#
+    #...o#
+    #....#
+    ######
 */
 
 // output
@@ -36,19 +37,19 @@ using NewMap = RunResult::Second;
 is_dead == false
 
 NewSnake == MakeList<
-	MakeCoord<2, 1>::Result,
+    MakeCoord<2, 1>::Result,
     MakeCoord<2, 2>::Result, 
-	MakeCoord<2, 3>::Result, 
-	MakeCoord<2, 4>::Result, 
-	MakeCoord<3, 4>::Result>::Result
+    MakeCoord<2, 3>::Result, 
+    MakeCoord<2, 4>::Result, 
+    MakeCoord<3, 4>::Result>::Result
 
 NewMap ==
-######
-#....#
-#@ooo#
-#...o#
-#....#
-######
+    ######
+    #....#
+    #@ooo#
+    #...o#
+    #....#
+    ######
 */
 ```
 
